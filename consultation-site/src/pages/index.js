@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Scroller, scrollInitialState } from 'react-skroll'
+import { css } from 'emotion'
 
 import Layout from '../components/layout'
 import Image from '../components/image'
@@ -9,6 +10,15 @@ import LargeMessage from '../components/large-message'
 import ContentSection from '../components/content-section'
 
 import Skully from '../icons/skully'
+
+const loremIpsum =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus nibh vitae metus luctus condimentum. Ut ut mauris tincidunt, luctus justo nec, commodo nisl. Sed cursus tellus vitae egestas ullamcorper.'
+
+const sections = [
+  { name: 'Services', content: loremIpsum },
+  { name: 'About Us', content: loremIpsum },
+  { name: 'Contact Us', content: loremIpsum },
+]
 
 class IndexPage extends React.Component {
   constructor() {
@@ -20,60 +30,47 @@ class IndexPage extends React.Component {
   }
 
   render() {
+    const { scroll } = this.state
+
+    let navigation
+
+    if (scroll)
+      navigation = (
+        <nav>
+          {scroll.children.map((child, i) => (
+            <a
+              key={i}
+              onClick={() => this.scroll.scrollToPosition(child.start)}
+            >
+              {sections[i].name}
+            </a>
+          ))}
+        </nav>
+      )
+
     return (
       <>
         <Layout>
           <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+          {navigation}
           <Scroller
             scrollRef={ref => (this.scroll = ref)}
             autoScroll={true}
             autoFrame={true}
             onScrollChange={scroll => this.setState({ scroll })}
           >
-            <ContentSection>
-              <LargeMessage
-                id="test"
-                color="main"
-                variant="right"
-                icon={Skully}
+            {sections.map(({ name, content }, index) => (
+              <section
+                key={index}
+                name={name}
+                style={{ minHeight: '100vh', display: 'flex' }}
               >
-                <b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit.
-                Donec faucibus nibh vitae metus luctus condimentum. <b>Ut ut</b>{' '}
-                mauris tincidunt, luctus justo nec, commodo nisl. Sed cursus
-                tellus vitae egestas ullamcorper.
-              </LargeMessage>
-            </ContentSection>
-            <ContentSection>
-              <LargeMessage id="test2" color="alt" variant="left" icon={Skully}>
-                <b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit.
-                Donec faucibus nibh vitae metus luctus condimentum. <b>Ut ut</b>{' '}
-                mauris tincidunt, luctus justo nec, commodo nisl. Sed cursus
-                tellus vitae egestas ullamcorper.
-              </LargeMessage>
-            </ContentSection>
-            <ContentSection>
-              <LargeMessage
-                id="test3"
-                color="main"
-                variant="right"
-                icon={Skully}
-              >
-                <b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit.
-                Donec faucibus nibh vitae metus luctus condimentum. <b>Ut ut</b>{' '}
-                mauris tincidunt, luctus justo nec, commodo nisl. Sed cursus
-                tellus vitae egestas ullamcorper.
-              </LargeMessage>
-            </ContentSection>
-            <ContentSection>
-              <LargeMessage id="test4" color="alt" variant="left" icon={Skully}>
-                <b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit.
-                Donec faucibus nibh vitae metus luctus condimentum. <b>Ut ut</b>{' '}
-                mauris tincidunt, luctus justo nec, commodo nisl. Sed cursus
-                tellus vitae egestas ullamcorper.
-              </LargeMessage>
-            </ContentSection>
+                <LargeMessage color="main" variant="right" icon={Skully}>
+                  {content}
+                </LargeMessage>
+              </section>
+            ))}
           </Scroller>
-          <Link to="/page-2/">Go to page 2</Link>
         </Layout>
       </>
     )
