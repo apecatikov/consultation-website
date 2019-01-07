@@ -52,25 +52,27 @@ class IndexPage extends React.Component {
       <>
         <Layout>
           <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-          {navigation}
-          <Scroller
-            scrollRef={ref => (this.scroll = ref)}
-            autoScroll={true}
-            autoFrame={true}
-            onScrollChange={scroll => this.setState({ scroll })}
-          >
-            {sections.map(({ name, content }, index) => (
-              <section
-                key={index}
-                name={name}
-                style={{ minHeight: '100vh', display: 'flex' }}
-              >
-                <LargeMessage color="main" variant="right" icon={Skully}>
-                  {content}
-                </LargeMessage>
-              </section>
-            ))}
-          </Scroller>
+          <div style={{ position: 'fixed', width: '100%', height: '100%' }}>
+            {navigation}
+            <Scroller
+              scrollRef={ref => (this.scroll = ref)}
+              autoScroll={true}
+              autoFrame={true}
+              onScrollChange={scroll => this.setState({ scroll })}
+            >
+              {sections.map(({ name, content }, index) => (
+                <section
+                  key={index}
+                  name={name}
+                  style={{ minHeight: '100vh', display: 'flex' }}
+                >
+                  <LargeMessage color="main" variant="right" icon={Skully}>
+                    {content}
+                  </LargeMessage>
+                </section>
+              ))}
+            </Scroller>
+          </div>
         </Layout>
       </>
     )
