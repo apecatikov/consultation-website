@@ -40,11 +40,13 @@ const menuItemStyle = css`
   color: #f4f4f4;
 `
 
+// TODO: consider changing <a> elements for buttons -> see href warning
 const Navigation = ({ scroll, onNavClick }) => {
   if (scroll)
     return (
       <nav className={menuItemWrapperStyle}>
         {scroll.children.map((child, i) => (
+          // eslint-disable-next-line
           <a
             className={menuItemStyle}
             key={i}
