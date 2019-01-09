@@ -11,17 +11,8 @@ const LargeMessage = ({
   style,
   ...restProps
 }) => {
-  const parseColor = () => {
-    switch (color) {
-      case 'main':
-        return '#105783'
-      case 'alt':
-        return '#8C74A8'
-    }
-  }
-
   const wrapperStyle = css`
-    color: ${parseColor()};
+    color: ${color};
     padding: 35px;
     display: flex;
     align-items: center;

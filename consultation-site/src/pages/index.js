@@ -25,9 +25,22 @@ const sections = [
 const Navigation = ({ scroll, onNavClick }) => {
   if (scroll)
     return (
-      <nav>
+      <nav
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}
+      >
         {scroll.children.map((child, i) => (
-          <a key={i} onClick={() => onNavClick(child.start)}>
+          <a
+            key={i}
+            onClick={() => onNavClick(child.start)}
+            style={{
+              padding: '0.2rem 0.5rem',
+              color: '#F4F4F4',
+            }}
+          >
             <b>{sections[i].name}</b>
           </a>
         ))}
@@ -86,7 +99,7 @@ class IndexPage extends React.Component {
                     //   'linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%)',
                   }}
                 >
-                  <LargeMessage color="main" variant="right" icon={Skully}>
+                  <LargeMessage color="#F4F4F4" variant="right" icon={Skully}>
                     {content}
                   </LargeMessage>
                 </section>
