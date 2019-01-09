@@ -20,29 +20,9 @@ class Header extends React.Component {
             padding: `1.45rem 1.0875rem`, //adds space surrounding the text
           }}
         >
-          <h1 style={{ margin: 0 /* removes excess margin below the text */ }}>
-            {/* <Scrollchor to="#test" animate={{ offset: -100 }}>
-          test
-        </Scrollchor>
-        <Scrollchor to="#test2" animate={{ offset: -100 }}>
-          test2
-        </Scrollchor>
-        <Scrollchor to="#test3" animate={{ offset: -100 }}>
-          test3
-        </Scrollchor>
-        <Scrollchor to="#test4" animate={{ offset: -100 }}>
-          test4
-        </Scrollchor> */}
-            {/* <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`, // removes the underline from the link
-          }}
-        >
-          {siteTitle}
-        </Link> */}
-          </h1>
+          <h1
+            style={{ margin: 0 /* removes excess margin below the text */ }}
+          />
         </div>
       </div>
     )
