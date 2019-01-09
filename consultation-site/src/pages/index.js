@@ -34,6 +34,14 @@ const menuItemStyle = css`
   color: #f4f4f4;
 `
 
+const pageWrapperStyle = css`
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%);
+`
+
 const Navigation = ({ scroll, onNavClick }) => {
   if (scroll)
     return (
@@ -69,16 +77,7 @@ class IndexPage extends React.Component {
       <div>
         <Layout>
           <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-          <div
-            style={{
-              position: 'fixed',
-              left: '0',
-              width: '100%',
-              height: '100%',
-              background:
-                'linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%)',
-            }}
-          >
+          <div className={pageWrapperStyle}>
             <Navigation
               scroll={scroll}
               onNavClick={childStartYPos =>
@@ -98,8 +97,6 @@ class IndexPage extends React.Component {
                   style={{
                     minHeight: '100vh',
                     display: 'flex',
-                    // background:
-                    //   'linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%)',
                   }}
                 >
                   <LargeMessage color="#F4F4F4" variant="right" icon={Skully}>
