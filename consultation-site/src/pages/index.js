@@ -4,10 +4,8 @@ import { Scroller, scrollInitialState } from 'react-skroll'
 import { css } from 'emotion'
 
 import Layout from '../components/layout'
-import Image from '../components/image'
 import SEO from '../components/seo'
 import LargeMessage from '../components/large-message'
-import ContentSection from '../components/content-section'
 
 import Skully from '../icons/skully'
 
@@ -26,6 +24,21 @@ const sections = [
   { name: 'Contact Us', content: loremIpsum },
 ]
 
+const Navigation = ({ scroll, onNavClick }) => {
+  if (scroll)
+    return (
+      <nav>
+        {scroll.children.map((child, i) => (
+          <a key={i} onClick={() => onNavClick(child.start)}>
+            <b>{sections[i].name}</b>
+          </a>
+        ))}
+      </nav>
+    )
+
+  return null
+}
+
 class IndexPage extends React.Component {
   constructor() {
     super()
@@ -37,25 +50,6 @@ class IndexPage extends React.Component {
 
   render() {
     const { scroll } = this.state
-
-    const Navigation = ({ scroll }) => {
-      if (scroll)
-        return (
-          <nav>
-            {console.log(scroll)}
-            {scroll.children.map((child, i) => (
-              <a
-                key={i}
-                onClick={() => this.scroll.scrollToPosition(child.start)}
-              >
-                <b>{sections[i].name}</b>
-              </a>
-            ))}
-          </nav>
-        )
-
-      return <div />
-    }
 
     return (
       <>
@@ -69,7 +63,12 @@ class IndexPage extends React.Component {
               height: '100%',
             }}
           >
-            <Navigation scroll={scroll} />
+            <Navigation
+              scroll={scroll}
+              onNavClick={childStartYPos =>
+                this.scroll.scrollToPosition(childStartYPos)
+              }
+            />
             <Scroller
               scrollRef={ref => (this.scroll = ref)}
               autoScroll={true}
