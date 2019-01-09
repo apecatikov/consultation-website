@@ -3,6 +3,7 @@ import { Scroller, scrollInitialState } from 'react-skroll'
 import { css } from 'emotion'
 
 import Layout, { loremIpsum, sections } from '../layouts/layout'
+
 import SEO from '../components/seo'
 import LargeMessage from '../components/large-message'
 

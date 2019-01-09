@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import { css } from 'emotion'
 
+import Header from '../components/header'
 import './layout.css'
 
 export const loremIpsum = (
@@ -77,6 +78,8 @@ class Layout extends React.Component {
         `}
         render={data => (
           <div className={pageWrapperStyle}>
+            {console.log(data)}
+            <Header siteTitle={data.site.siteMetadata.title} />
             <Navigation
               scroll={scroll}
               onNavClick={childStartYPos => onNavClick(childStartYPos)}
