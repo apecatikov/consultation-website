@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
-import Header from './header'
 import './layout.css'
 
 class Layout extends React.Component {
@@ -22,14 +21,8 @@ class Layout extends React.Component {
         `}
         render={data => (
           <>
-            <div
-              style={{
-                padding: `100px 1.0875rem 1.45rem`,
-              }}
-            >
-              {this.props.children}
-              <footer />
-            </div>
+            {this.props.children}
+            <footer />
           </>
         )}
       />

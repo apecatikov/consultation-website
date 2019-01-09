@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { Scroller, scrollInitialState } from 'react-skroll'
-import { css } from 'emotion'
 
-import Layout from '../components/layout'
+import Layout from '../layouts/layout'
 import SEO from '../components/seo'
 import LargeMessage from '../components/large-message'
 
@@ -52,7 +50,7 @@ class IndexPage extends React.Component {
     const { scroll } = this.state
 
     return (
-      <>
+      <div>
         <Layout>
           <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
           <div
@@ -61,6 +59,8 @@ class IndexPage extends React.Component {
               left: '0',
               width: '100%',
               height: '100%',
+              background:
+                'linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%)',
             }}
           >
             <Navigation
@@ -82,8 +82,8 @@ class IndexPage extends React.Component {
                   style={{
                     minHeight: '100vh',
                     display: 'flex',
-                    background:
-                      'linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%)',
+                    // background:
+                    //   'linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%)',
                   }}
                 >
                   <LargeMessage color="main" variant="right" icon={Skully}>
@@ -94,7 +94,7 @@ class IndexPage extends React.Component {
             </Scroller>
           </div>
         </Layout>
-      </>
+      </div>
     )
   }
 }
