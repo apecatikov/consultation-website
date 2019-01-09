@@ -1,5 +1,6 @@
 import React from 'react'
 import { Scroller, scrollInitialState } from 'react-skroll'
+import { css } from 'emotion'
 
 import Layout from '../layouts/layout'
 import SEO from '../components/seo'
@@ -22,24 +23,26 @@ const sections = [
   { name: 'Contact Us', content: loremIpsum },
 ]
 
+const menuItemWrapperStyle = css`
+  display: flex;
+  flexdirection: row;
+  justify-content: center;
+`
+
+const menuItemStyle = css`
+  padding: 0.2rem 0.2rem;
+  color: #f4f4f4;
+`
+
 const Navigation = ({ scroll, onNavClick }) => {
   if (scroll)
     return (
-      <nav
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-        }}
-      >
+      <nav className={menuItemWrapperStyle}>
         {scroll.children.map((child, i) => (
           <a
+            className={menuItemStyle}
             key={i}
             onClick={() => onNavClick(child.start)}
-            style={{
-              padding: '0.2rem 0.5rem',
-              color: '#F4F4F4',
-            }}
           >
             <b>{sections[i].name}</b>
           </a>
