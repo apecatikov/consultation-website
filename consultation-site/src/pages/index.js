@@ -6,7 +6,7 @@ import Layout from '../layouts/layout'
 import SEO from '../components/seo'
 import LargeMessage from '../components/large-message'
 
-import Skully from '../icons/skully'
+import Services from '../icons/services'
 
 const loremIpsum = (
   <div>
@@ -99,7 +99,7 @@ class IndexPage extends React.Component {
                     display: 'flex',
                   }}
                 >
-                  <LargeMessage color="#F4F4F4" variant="right" icon={Skully}>
+                  <LargeMessage color="#F4F4F4" variant="right" icon={Services}>
                     {content}
                   </LargeMessage>
                 </section>
