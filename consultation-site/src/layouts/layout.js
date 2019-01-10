@@ -42,7 +42,12 @@ const Logo = styled.div`
   text-transform: uppercase;
 `
 
-const MenuList = styled.ul`
+const Menu = styled.ul`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 15px;
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -85,22 +90,20 @@ const MenuItem = styled.li`
 const Navigation = ({ scroll, onNavClick }) => {
   if (scroll)
     return (
-      <nav>
-        <MenuList>
-          <Logo>Logo</Logo>
-          {scroll.children.map((child, i) => (
-            <MenuItem
-              key={i}
-              onClick={() => onNavClick(child.start)}
-              spy={true}
-              active={child.active}
-              order={sections[i].order}
-            >
-              {sections[i].name}
-            </MenuItem>
-          ))}
-        </MenuList>
-      </nav>
+      <Menu>
+        <Logo>Logo</Logo>
+        {scroll.children.map((child, i) => (
+          <MenuItem
+            key={i}
+            onClick={() => onNavClick(child.start)}
+            spy={true}
+            active={child.active}
+            order={sections[i].order}
+          >
+            {sections[i].name}
+          </MenuItem>
+        ))}
+      </Menu>
     )
 
   return null

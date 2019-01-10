@@ -40,6 +40,7 @@ class IndexPage extends React.Component {
               name={name}
               style={{
                 minHeight: '100vh',
+                paddingTop: '146px',
                 display: 'flex',
               }}
             >
