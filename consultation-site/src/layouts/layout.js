@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import { css } from 'emotion'
+import styled from '@emotion/styled'
 
 import Header from '../components/header'
 import './layout.css'
@@ -15,49 +15,91 @@ export const loremIpsum = (
 )
 
 export const sections = [
-  { name: 'Services', content: loremIpsum },
-  { name: 'Team', content: loremIpsum },
-  { name: 'Dashboard', content: loremIpsum },
-  { name: 'Contact Us', content: loremIpsum },
+  { name: 'Services', content: loremIpsum, order: 1 },
+  { name: 'Team', content: loremIpsum, order: 2 },
+  { name: 'Dashboard', content: loremIpsum, order: 4 },
+  { name: 'Contact Us', content: loremIpsum, order: 5 },
 ]
 
-const pageWrapperStyle = css`
+const PageWrapper = styled.div`
   position: fixed;
-  left: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%);
 `
 
-const menuItemWrapperStyle = css`
+const Logo = styled.div`
+  width: 139px;
+  height: 139px;
+  flex: 0 0 139px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  color: #fff;
+  order: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+`
+
+const MenuList = styled.ul`
   list-style-type: none;
   display: flex;
-  flexdirection: row;
-  justify-content: space-evenly;
+  flex-direction: row;
 `
 
-const menuItemStyle = css`
-  padding: 0.2rem 0.2rem;
+const MenuItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  height: 146px;
+  margin: 0 3px;
   color: #f4f4f4;
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  cursor: pointer;
+  order: ${p => p.order};
+
+  &::before {
+    opacity: ${p => (p.active ? 1 : 0)};
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(141.97deg, #a5f282 2.2%, #008d3c 108.76%);
+  }
+
+  &:hover::before {
+    opacity: 1;
+    background: linear-gradient(353.61deg, #d13eb9 9.42%, #e99c4a 97.97%);
+  }
 `
 
-// TODO: consider changing <a> elements for buttons -> see href warning
 const Navigation = ({ scroll, onNavClick }) => {
   if (scroll)
     return (
       <nav>
-        <ul className={menuItemWrapperStyle}>
+        <MenuList>
+          <Logo>Logo</Logo>
           {scroll.children.map((child, i) => (
-            // eslint-disable-next-line
-            <li
-              className={menuItemStyle}
+            <MenuItem
               key={i}
               onClick={() => onNavClick(child.start)}
+              spy={true}
+              active={child.active}
+              order={sections[i].order}
             >
-              <b>{sections[i].name}</b>
-            </li>
+              {sections[i].name}
+            </MenuItem>
           ))}
-        </ul>
+        </MenuList>
       </nav>
     )
 
@@ -86,7 +128,7 @@ class Layout extends React.Component {
           }
         `}
         render={data => (
-          <div className={pageWrapperStyle}>
+          <PageWrapper>
             {/* {console.log(data)}
             <Header siteTitle={data.site.siteMetadata.title} /> */}
             <Navigation
@@ -95,7 +137,7 @@ class Layout extends React.Component {
             />
             {this.props.children}
             <footer />
-          </div>
+          </PageWrapper>
         )}
       />
     )

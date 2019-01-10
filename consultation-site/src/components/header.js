@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'emotion'
+import styled from '@emotion/styled'
 
-const titleStyle = css`
+const Title = styled.h1`
+  margin: 0;
   padding: 1.45rem 1.0875rem;
 `
 
@@ -17,13 +18,7 @@ class Header extends React.Component {
   }
 
   render() {
-    return (
-      <div className={titleStyle}>
-        <h1 style={{ margin: 0 /* removes excess margin below the text */ }}>
-          {this.props.siteTitle}
-        </h1>
-      </div>
-    )
+    return <Title>{this.props.siteTitle}</Title>
   }
 }
 

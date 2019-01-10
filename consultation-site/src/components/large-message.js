@@ -1,5 +1,6 @@
 import React from 'react'
-import { css } from 'emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 
 // variant: left/right
 // color: main (blue), alt (purple)
