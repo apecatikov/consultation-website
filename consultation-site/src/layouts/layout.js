@@ -30,9 +30,10 @@ const pageWrapperStyle = css`
 `
 
 const menuItemWrapperStyle = css`
+  list-style-type: none;
   display: flex;
   flexdirection: row;
-  justify-content: center;
+  justify-content: space-evenly;
 `
 
 const menuItemStyle = css`
@@ -44,17 +45,19 @@ const menuItemStyle = css`
 const Navigation = ({ scroll, onNavClick }) => {
   if (scroll)
     return (
-      <nav className={menuItemWrapperStyle}>
-        {scroll.children.map((child, i) => (
-          // eslint-disable-next-line
-          <a
-            className={menuItemStyle}
-            key={i}
-            onClick={() => onNavClick(child.start)}
-          >
-            <b>{sections[i].name}</b>
-          </a>
-        ))}
+      <nav>
+        <ul className={menuItemWrapperStyle}>
+          {scroll.children.map((child, i) => (
+            // eslint-disable-next-line
+            <li
+              className={menuItemStyle}
+              key={i}
+              onClick={() => onNavClick(child.start)}
+            >
+              <b>{sections[i].name}</b>
+            </li>
+          ))}
+        </ul>
       </nav>
     )
 
@@ -62,6 +65,10 @@ const Navigation = ({ scroll, onNavClick }) => {
 }
 
 class Layout extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  }
+
   render() {
     const { scroll, onNavClick } = this.props
 
@@ -80,8 +87,8 @@ class Layout extends React.Component {
         `}
         render={data => (
           <div className={pageWrapperStyle}>
-            {console.log(data)}
-            <Header siteTitle={data.site.siteMetadata.title} />
+            {/* {console.log(data)}
+            <Header siteTitle={data.site.siteMetadata.title} /> */}
             <Navigation
               scroll={scroll}
               onNavClick={childStartYPos => onNavClick(childStartYPos)}
@@ -93,10 +100,6 @@ class Layout extends React.Component {
       />
     )
   }
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout
