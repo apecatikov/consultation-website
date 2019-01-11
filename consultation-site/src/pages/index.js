@@ -44,7 +44,7 @@ class IndexPage extends React.Component {
                 display: 'flex',
               }}
             >
-              <LargeMessage color="#F4F4F4" variant="right" icon={Services}>
+              <LargeMessage variant="right" icon={Services}>
                 {content}
               </LargeMessage>
             </section>

@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 // variant: left/right
 const MessageBlock = styled.div`
-  color: ${props => props.color || '#f4f4f4'};
+  color: #f4f4f4;
   padding: 35px;
   display: flex;
   align-items: center;
@@ -46,7 +46,7 @@ const Icon = styled.div`
   }
 `
 
-const LargeMessage = ({ color, variant, icon, children, style }) => {
+const LargeMessage = ({ variant, icon, children, style }) => {
   return (
     <MessageBlock style={style}>
       {icon && <Icon variant={variant}>{icon()}</Icon>}
