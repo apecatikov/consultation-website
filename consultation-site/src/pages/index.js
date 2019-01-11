@@ -8,6 +8,10 @@ import LargeMessage from '../components/large-message'
 import Services from '../icons/services'
 
 const ContentSection = styled.section`
+  min-height: 100vh;
+  padding-top: 146px;
+  display: flex;
+
   &::before {
     content: '';
     position: absolute;
@@ -48,15 +52,7 @@ class IndexPage extends React.Component {
           onScrollChange={scroll => this.setState({ scroll })}
         >
           {sections.map(({ name, content }, index) => (
-            <ContentSection
-              key={index}
-              name={name}
-              style={{
-                minHeight: '100vh',
-                paddingTop: '146px',
-                display: 'flex',
-              }}
-            >
+            <ContentSection key={index} name={name}>
               <LargeMessage variant="right" icon={Services}>
                 {content}
               </LargeMessage>
