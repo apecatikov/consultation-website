@@ -60,6 +60,7 @@ const MenuItem = styled.li`
   align-items: center;
   flex: 1 0 auto;
   height: 146px;
+  width: 139px;
   margin: 0 3px;
   color: #f4f4f4;
   position: relative;
