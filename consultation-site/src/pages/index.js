@@ -1,12 +1,25 @@
 import React from 'react'
 import { Scroller, scrollInitialState } from 'react-skroll'
-
-import Layout, { sections } from '../layouts/layout'
+import styled from '@emotion/styled'
 
 import SEO from '../components/seo'
+import Layout, { sections } from '../layouts/layout'
 import LargeMessage from '../components/large-message'
-
 import Services from '../icons/services'
+
+const ContentSection = styled.section`
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -40%;
+    transform: rotate(-20deg);
+    height: 1000px;
+    width: 1500px;
+    z-index: 1;
+    background: rgba(55, 80, 128, 0.28);
+  }
+`
 
 class IndexPage extends React.Component {
   constructor() {
@@ -35,7 +48,7 @@ class IndexPage extends React.Component {
           onScrollChange={scroll => this.setState({ scroll })}
         >
           {sections.map(({ name, content }, index) => (
-            <section
+            <ContentSection
               key={index}
               name={name}
               style={{
@@ -47,7 +60,7 @@ class IndexPage extends React.Component {
               <LargeMessage variant="right" icon={Services}>
                 {content}
               </LargeMessage>
-            </section>
+            </ContentSection>
           ))}
         </Scroller>
       </Layout>

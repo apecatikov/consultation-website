@@ -26,6 +26,7 @@ const PageWrapper = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(67.86deg, #101730 -3.34%, #375080 92.35%);
+  z-index: 0;
 `
 
 const Logo = styled.div`
@@ -51,6 +52,7 @@ const Menu = styled.ul`
   list-style-type: none;
   display: flex;
   flex-direction: row;
+  z-index: 2;
 `
 
 const MenuItem = styled.li`

@@ -7,6 +7,7 @@ const MessageBlock = styled.div`
   padding: 35px;
   display: flex;
   align-items: center;
+  z-index: 2;
 
   @media screen and (max-width: 767px) {
     flex-direction: column;
